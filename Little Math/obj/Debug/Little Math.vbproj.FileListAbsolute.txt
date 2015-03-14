@@ -1,0 +1,27 @@
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.exe
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.xml
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.pdb
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.exe
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.pdb
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.xml
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\ResolveAssemblyReference.cache
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Form1.resources
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.BinaryCalculation.resources
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Resources.resources
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.vbproj.GenerateResource.Cache
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Equation.resources
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.NumberTheory.resources
+H:\Projects\Software Project\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.GcdLcmFraction.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.xml
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.pdb
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Equation.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Form1.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.BinaryCalculation.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.Resources.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.GcdLcmFraction.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little_Math.NumberTheory.resources
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.vbproj.GenerateResource.Cache
+E:\Projects\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.exe
+E:\Projects\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.pdb
+E:\Projects\Visual Basic 2008\Little Math\Little Math\bin\Debug\Little Math.xml
+E:\Projects\Visual Basic 2008\Little Math\Little Math\obj\Debug\Little Math.exe

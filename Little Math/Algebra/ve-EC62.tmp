@@ -1,0 +1,136 @@
+﻿Imports System.Math
+Public Class Equation
+
+#Region "User Subs"
+    ''
+    '' solve general equation
+    '' x = -b/a
+    Function SolveGeneral(ByVal a As Double, ByVal b As Double)
+        Dim res As Object
+        If a = 0 Then
+            res = "Invalid equation."
+        Else
+            res = -b / a
+        End If
+        Return res
+    End Function
+
+    ''
+    '' solve quadratic equation
+    '' x1 = (-b + (b^2 - 4ac)^0.5)/(2a)    x2 = (-b - (b^2 - 4ac)^0.5)/(2a)
+    Function SolveQuad(ByVal A As Double, ByVal B As Double, ByVal C As Double) As Object()
+        Dim res() = {"", ""}
+        If A = 0 Then
+            res(0) = SolveGeneral(B, C)
+            res(1) = "Equation became Linear."
+        Else
+            Dim p As Double = B ^ 2 - 4 * A * C
+            If p >= 0 Then
+                Dim q As Double = Math.Sqrt(p)
+                res(0) = (-B + q) / (2 * A)         'this section will return
+                res(1) = (-B - q) / (2 * A)         'value as fraction later.
+            Else
+                Dim q As Double = Math.Sqrt(-p)
+                res(0) = (-B + q) / (2 * A) & "i"       'this section will return
+                res(1) = (-B - q) / (2 * A) & "i"   'value as fraction later.
+                'correcting result format
+                res(0) = Replace(res(0), "0i", "0")
+                res(1) = Replace(res(1), "0i", "0")
+                res(0) = Replace(res(0), "1i", "i")
+                res(1) = Replace(res(1), "-1i", "-i")
+                res(0) = Replace(res(0), "-1i", "-i")
+                res(1) = Replace(res(1), "1i", "i")
+            End If
+        End If
+        Return res
+    End Function
+    ''
+    '' solve cubic equation
+    '' a1=b/a, a2=c/a, a3=d/a, p=(3*a2 - a1^2)/9, q = (9*a1*a2 - 27*a3 - 2*(a1^3))/54
+    '' s = sqrt(q + sqrt(p^3 + q^2)), t = sqrt(q - sqrt(p^3 + q^2))
+    '' x1 = s + t - (1/3)*a1, x2 = -(1/2)*(s+t) - (1/3)*a1 + (1/2)*sqrt(3)*(s-t) & i, x2 = -(1/2)*(s+t) - (1/3)*a1 + (1/2)*sqrt(3)*(s-t) & i
+    Function SolveCube(ByVal A As Double, ByVal B As Double, ByVal C As Double, ByVal D As Double) As Object()
+        Dim res() = {"", "", ""}
+        If A = 0 Then
+            Dim p() = SolveQuad(B, C, D)
+            res(0) = p(0)
+            res(1) = p(1)
+            res(2) = "Equation became Quadratic."
+        Else
+            Dim A1, A2, A3, P, Q, S, T As Double
+            A1 = B / A : A2 = C / A : A3 = D / A
+            P = (3 * A2 - A1 ^ 2) / 9
+            Q = (9 * A1 * A2 - 27 * A3 - 2 * (A1 ^ 3)) / 54
+            S = (Q + (P ^ 3 + Q ^ 2) ^ 0.5) ^ 0.5
+            T = (Q - (P ^ 3 + Q ^ 2) ^ 0.5) ^ 0.5
+
+            res(0) = S + T - (1 / 3) * A1
+            res(1) = -(1 / 2) * (S + T) - (1 / 3) * A1 + (1 / 2) * Sqrt(3) * (S - T) & Int16
+            res(2) = -(1 / 2) * (S + T) - (1 / 3) * A1 + (1 / 2) * Sqrt(3) * (S - T) & i
+        End If
+        Return res
+    End Function
+#End Region
+
+#Region "Event Subs"
+    ''
+    '' Got or lost textbox focus
+    '' Got Focus
+    Private Sub ABCD_GotFocus(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles QuadA.GotFocus, QuadB.GotFocus, QuadC.GotFocus, CubeA.GotFocus, CubeB.GotFocus, CubeC.GotFocus, CubeD.GotFocus
+        If IsNumeric(sender.Text) Then
+            If CInt(sender.Text) = 0 Then sender.Text = ""
+        End If
+        If sender.Name.Contains("Quad") Then
+            Me.ParentForm.AcceptButton = QuadSolve
+        ElseIf sender.Name.Contains("Cube") Then
+            Me.ParentForm.AcceptButton = CubeSolve
+        End If
+    End Sub
+    '' Lost Focus
+    Private Sub ABCD_LostFocus(ByVal sender As TextBox, ByVal e As System.EventArgs) Handles QuadA.LostFocus, QuadB.LostFocus, QuadC.LostFocus, CubeA.LostFocus, CubeB.LostFocus, CubeC.LostFocus, CubeD.LostFocus
+        If Not IsNumeric(sender.Text) Then
+            If sender.Text.Trim = "" Then : sender.Text = 0
+            Else : sender.Focus() : End If
+        End If
+        Me.ParentForm.AcceptButton = Nothing
+    End Sub
+    ''
+    '' Solve Quadratic
+    '' a.X^2 + b.X + c = 0
+    Private Sub QuadSolve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles QuadSolve.Click
+        Try
+            Dim A As Double = CDbl(QuadA.Text)
+            Dim B As Double = CDbl(QuadB.Text)
+            Dim C As Double = CDbl(QuadC.Text)
+            Dim res() = SolveQuad(A, B, C)
+            QuadRes1.Text = res(0)
+            QuadRes2.Text = res(1)
+            QuadGiven.Text = "Equation: " & A & ".X² + " & B & ".X + " & C & " = 0"
+        Catch ex As Exception
+            QuadRes1.Text = ex.Message
+            QuadA.Focus()
+        End Try
+    End Sub
+    ''
+    '' Solve Cubic
+    '' X^3 + a.X^2 + b.X + c = 0
+    Private Sub CubeSolve_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CubeSolve.Click
+        Try
+            Dim A As Double = CDbl(CubeA.Text)
+            Dim B As Double = CDbl(CubeB.Text)
+            Dim C As Double = CDbl(CubeC.Text)
+            Dim D As Double = CDbl(CubeD.Text)
+            Dim res() = SolveCube(A, B, C, D)
+            CubeRes1.Text = res(0)
+            CubeRes2.Text = res(1)
+            CubeRes3.Text = res(2)
+            CubeGiven.Text = "Equation: " & A & ".X³ + " & B & ".X² + " & C & ".X + " & D & " = 0"
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            CubeRes1.Text = ex.Message
+            CubeA.Focus()
+        End Try
+    End Sub
+#End Region
+
+End Class
